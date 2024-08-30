@@ -1,10 +1,16 @@
 import { View, Text , Image, StyleSheet  } from 'react-native'
 import React from 'react'
 import {Colors} from '@/constants/Colors'
+import {useRouter} from 'expo-router'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function Login() {
+
+  const router = useRouter();
+
   return (
-    <View>
+    <GestureHandlerRootView>
       <Image source={require('./../assets/images/image1.jpg')}
         style={{
           width:'100%',
@@ -14,6 +20,7 @@ export default function Login() {
       />
       <View style={styles.container1 }>
         <Text style={{
+          marginTop:10,
           fontSize:30,
           fontFamily:'outfit-bold',
           textAlign:'center',
@@ -22,20 +29,22 @@ export default function Login() {
         <Text style={{
           fontSize:15,
           textAlign:'center',
-          fontFamily:'outfit',
+          fontFamily:'outfit-medium',
           color:Colors.grey
         }}>Discover your next adventure with personalized travel experiences</Text>
 
-        <View style={styles.button}>
+        <TouchableOpacity style={styles.button}
+          onPress={() => router.push('auth/sign-in')}
+        >
           <Text style={{
             fontFamily:'outfit',
             color:Colors.white,
             fontSize:20
-          }}>Sign In With Google</Text>
-        </View>
+          }}>Get Started</Text>
+        </TouchableOpacity>
 
       </View>
-    </View>
+    </GestureHandlerRootView>
   )
 }
 
@@ -59,7 +68,7 @@ const styles = StyleSheet.create({
     backgroundColor:Colors.primary,
     padding:20,
     borderRadius:99,
-    width:'80%',
+    width:300,
     textAlign:'center',
     alignItems: 'center',
     marginTop:'20%'
