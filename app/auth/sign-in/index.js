@@ -4,6 +4,7 @@ import {useNavigation} from 'expo-router';
 import { Colors } from './../../../constants/Colors';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {useRouter} from 'expo-router'
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function SignIn() {
 
@@ -20,20 +21,24 @@ export default function SignIn() {
   return (
     <GestureHandlerRootView style={{
       padding:25,
-      paddingTop:100,
+      paddingTop:50,
       backgroundColor:Colors.white,
       height:'100%'
     }}>
+      <TouchableOpacity onPress={() => router.back()}>
+        <Ionicons name="arrow-back" size={24} color="black" />
+      </TouchableOpacity>
       <Text style={{
         fontFamily:'outfit-bold',
-        fontSize:40
+        fontSize:40,
+        paddingTop:30,
       }}>Let's Sign You In</Text>
 
       <Text style={{
         fontFamily:'outfit',
         fontSize:28,
         color:Colors.grey,
-        marginTop:30
+        marginTop:20
       }}>Welcome Back</Text>
 
       <Text style={{
@@ -43,7 +48,7 @@ export default function SignIn() {
       }}>You've been missed...!</Text>
 
       <View style={{
-        marginTop:50
+        marginTop:40
       }}>
         <Text style={{
           marginTop:10,
