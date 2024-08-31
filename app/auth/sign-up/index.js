@@ -36,6 +36,7 @@ export default function SignUp() {
       // Signed up 
       const user = userCredential.user;
       //console.log(user);
+      router.replace('/signin')
       // ...
     })
     .catch((error) => {
