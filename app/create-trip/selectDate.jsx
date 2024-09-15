@@ -25,7 +25,7 @@ export default function selectDate() {
     }, []);
 
     const onDateChange = (date,type) => {
-        console.log(date,type);
+        
         if(type === 'START_DATE'){
             setStartDate(moment(date))
         }else{
@@ -37,16 +37,23 @@ export default function selectDate() {
 
         if(!startDate && !endDate){
             ToastAndroid.show('Please select Start and End Date',ToastAndroid.LONG)
+        }else{
+            // Ensure startDate and endDate are valid Date objects
+            const totalDate = differenceInDays(new Date(endDate), new Date(startDate));
+            setTripData({
+                ...tripData,
+                startDate:startDate,
+                endDate:endDate,
+                totalDate:totalDate
+            })
+            router.push('/create-trip/selectBudget')
+            
         }
-         // Ensure startDate and endDate are valid Date objects
-        const totalDate = differenceInDays(new Date(endDate), new Date(startDate));
-        setTripData({
-            ...tripData,
-            startDate:startDate,
-            endDate:endDate,
-            totalDate:totalDate
-        })
     }
+
+    // useEffect(()=>{
+    //     console.log(tripData);
+    // },[tripData])
 
     return (
         <GestureHandlerRootView>

@@ -35,3 +35,24 @@ export const selectTravelesList = [
         people: '10'
     }
 ];
+
+export const selectBudgetList = [
+    {
+        id:1,
+        title:'Cheap',
+        desc:'Stay conscious of cost',
+        icon:'💵'
+    },
+    {
+        id: 2,
+        title: 'Moderate',
+        desc: 'Balanced cost with quality',
+        icon:'💰'
+    },
+    {
+        id: 3,
+        title: 'Luxury',
+        desc: 'High-end and premium options',
+        icon:'💸'
+    }
+]
