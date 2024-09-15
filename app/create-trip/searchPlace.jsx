@@ -1,14 +1,16 @@
 import { View, TextInput, Text } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Colors } from '../../constants/Colors';
 import { useNavigation, useRouter } from 'expo-router';
 import axios from 'axios';
+import { CreateTripContext } from '../../context/CreateTrip';
 
 export default function SearchPlace() {
     const navigation = useNavigation();
     const router = useRouter();
     const [searchText, setSearchText] = useState('');
     const [suggestions, setSuggestions] = useState([]);
+    const [tripData,setTripData] = useContext(CreateTripContext);
 
     useEffect(() => {
         navigation.setOptions({
@@ -31,8 +33,18 @@ export default function SearchPlace() {
         }
     };
 
-    const handleSelectPlace = (place) => {
-        console.log(place);
+    const handleSelectPlace = async (place) => {
+        
+        // Extract necessary data from the selected place
+        const locationInfo = {
+            description: place.formatted, // Full address or description
+            geometry: place.geometry, // Contains lat/lng info
+            url: place.annotations?.OSM?.url || '', // Use OSM URL if available
+            image: place.photos?.[0]?.getUrl({ maxWidth: 400 }) || '', // Use the first photo URL if available
+        };
+
+        // Update the trip data context with selected location
+        setTripData((prevData) => [...prevData, locationInfo]);
         router.push('/create-trip/selectTraveler');
     };
 
