@@ -1,6 +1,6 @@
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import React, { useEffect, useState , useContext } from 'react';
-import { useNavigation } from 'expo-router';
+import { useNavigation , useRouter } from 'expo-router';
 import { Colors } from '../../constants/Colors';
 import { selectTravelesList } from '../../constants/Option';
 import OptionCard from '../../components/CreateTrip/OptionCard';
@@ -10,6 +10,7 @@ import { CreateTripContext } from '../../context/CreateTrip';
 
 export default function SelectTraveler() {
     const navigation = useNavigation();
+    const router = useRouter();
     const [selected, setSelected] = useState('');
     const [tripData,setTripData] = useContext(CreateTripContext);
     
@@ -31,6 +32,10 @@ export default function SelectTraveler() {
     // useEffect(() => {
     //     console.log(tripData)
     // },[tripData])
+
+    const navigate = () => {
+        router.push('/create-trip/selectDate');
+    }
 
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
@@ -79,7 +84,9 @@ export default function SelectTraveler() {
                         )}
                     />
                 </View>
-                <TouchableOpacity>
+                <TouchableOpacity
+                onPress={navigate}
+                >
                     <Text style={{
                         padding:15,
                         backgroundColor:Colors.primary,
