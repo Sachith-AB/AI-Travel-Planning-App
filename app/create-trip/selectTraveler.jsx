@@ -79,6 +79,20 @@ export default function SelectTraveler() {
                         )}
                     />
                 </View>
+                <TouchableOpacity>
+                    <Text style={{
+                        padding:15,
+                        backgroundColor:Colors.primary,
+                        color:Colors.white,
+                        textAlign:'center',
+                        borderRadius:15,
+                        fontSize:15,
+                        fontFamily:'outfit-bold',
+                        marginTop:10
+                    }}>
+                        Continoue
+                    </Text>
+                </TouchableOpacity>
             </View>
         </GestureHandlerRootView>
     );
