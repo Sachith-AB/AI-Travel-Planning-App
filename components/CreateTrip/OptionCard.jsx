@@ -12,7 +12,7 @@ export default function OptionCard({option,selected}) {
             justifyContent:'space-between',
             backgroundColor:Colors.lightgrey,
             borderRadius:15
-        },selected === option.title && {
+        },selected.id === option.id && {
             borderWidth:3,
             //borderColor:Colors.dark
         }]}>

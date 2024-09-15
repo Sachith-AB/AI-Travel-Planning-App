@@ -1,14 +1,17 @@
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState , useContext } from 'react';
 import { useNavigation } from 'expo-router';
 import { Colors } from '../../constants/Colors';
 import { selectTravelesList } from '../../constants/Option';
 import OptionCard from '../../components/CreateTrip/OptionCard';
 import { GestureHandlerRootView } from 'react-native-gesture-handler'; // Import GestureHandlerRootView
+import { CreateTripContext } from '../../context/CreateTrip';
+
 
 export default function SelectTraveler() {
     const navigation = useNavigation();
     const [selected, setSelected] = useState('');
+    const [tripData,setTripData] = useContext(CreateTripContext);
     
 
     useEffect(() => {
@@ -18,6 +21,16 @@ export default function SelectTraveler() {
             headerTitle: ''
         });
     }, []);
+
+    useEffect(()=> {
+        setTripData({...tripData,
+            travelerCount:selected
+        })
+    },[selected])
+
+    // useEffect(() => {
+    //     console.log(tripData)
+    // },[tripData])
 
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
@@ -56,7 +69,7 @@ export default function SelectTraveler() {
                         keyExtractor={(item) => item.title}
                         renderItem={({ item }) => (
                             <TouchableOpacity
-                                onPress={() => setSelected(item.title)}
+                                onPress={() => setSelected(item)}
                                 style={{
                                     marginVertical: 10
                                 }}
