@@ -29,10 +29,7 @@ export default function SelectTraveler() {
         })
     },[selected])
 
-    // useEffect(() => {
-    //     console.log(tripData)
-    // },[tripData])
-
+    
     const navigate = () => {
         router.push('/create-trip/selectDate');
     }

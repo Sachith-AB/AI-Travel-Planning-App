@@ -35,9 +35,13 @@ export default function selectDate() {
 
     const onDateSelection = () => {
 
-        if(!startDate && !endDate){
-            ToastAndroid.show('Please select Start and End Date',ToastAndroid.LONG)
-        }else{
+        if(!startDate){
+            ToastAndroid.show('Please select Start Date',ToastAndroid.LONG)
+        }
+        else if(!endDate){
+            ToastAndroid.show('Please select End Date',ToastAndroid.LONG)
+        }
+        else{
             // Ensure startDate and endDate are valid Date objects
             const totalDate = differenceInDays(new Date(endDate), new Date(startDate));
             setTripData({

@@ -5,10 +5,12 @@ import { Colors } from '../../constants/Colors';
 import { selectBudgetList } from '../../constants/Option';
 import OptionCard from '../../components/CreateTrip/OptionCard';
 import { CreateTripContext } from '../../context/CreateTrip';
+import { ToastAndroid } from 'react-native';
 
 export default function selectBudget() {
 
     const navigation = useNavigation();
+    const router = useRouter();
     const [selected, setSelected] = useState('');
     const [tripData,setTripData] = useContext(CreateTripContext);
 
@@ -26,9 +28,18 @@ export default function selectBudget() {
         })
     },[selected])
 
-    useEffect(() => {
-        console.log(tripData)
-    },[tripData])
+    // useEffect(() => {
+    //     console.log(tripData)
+    // },[tripData])
+
+    const navigate = () => {
+        if(!selected){
+            ToastAndroid.show('Selected Your Budget',ToastAndroid.LONG)
+            return;
+        }else{
+            router.push('/create-trip/reviewTrip')
+        }
+    }
 
     return (
         
@@ -75,6 +86,21 @@ export default function selectBudget() {
                             )}
                         />
                 </View>
+
+                <TouchableOpacity onPress={navigate}>
+                    <Text style={{
+                        padding:15,
+                        backgroundColor:Colors.primary,
+                        color:Colors.white,
+                        textAlign:'center',
+                        borderRadius:15,
+                        fontSize:15,
+                        fontFamily:'outfit-bold',
+                        marginTop:20
+                    }}>
+                        Continoue
+                    </Text>
+                </TouchableOpacity>
 
             </View>
         </View>
