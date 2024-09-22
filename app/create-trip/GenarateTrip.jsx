@@ -1,8 +1,40 @@
 import { View, Text , Image } from 'react-native'
-import React from 'react'
+import {useRouter} from 'expo-router';
+import React, { useContext, useEffect, useState } from 'react'
 import { Colors } from '../../constants/Colors';
+import { CreateTripContext } from '../../context/CreateTrip';
+import { AI_PROMPT } from '../../constants/Option';
+import { chatSession } from '../../config/AiModal';
 
 export default function GenarateTrip() {
+
+    const [tripData,setTripData] = useContext(CreateTripContext);
+    const [loading ,setLoading] = useState(true);
+    const router = useRouter();
+
+    useEffect(() => {
+        tripData && genarateAiTrip();
+    },[tripData]);
+
+    const genarateAiTrip = async () => {
+        setLoading(true)
+        const FINAL_PROMPT = AI_PROMPT
+        .replace('{location}',tripData[0].description)
+        .replace('{totalDate}',tripData.totalDate)
+        .replace('{totalNight}',tripData.totalDate-1)
+        .replace('{traveler}',tripData.travelerCount.title)
+        .replace('{budget}',tripData.budget)
+        .replace('{totalDate}',tripData.totalDate)
+        .replace('{totalNight}',tripData.totalDate-1)
+
+        console.log(FINAL_PROMPT)
+
+        const result = await chatSession.sendMessage(FINAL_PROMPT);
+        console.log(result.response.text());
+        setLoading(false)
+
+        router.push('(tabs)/mytrip/')
+    }
     return (
         <View style={{
             padding: 25,

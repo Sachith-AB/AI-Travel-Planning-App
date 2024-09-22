@@ -22,9 +22,9 @@ export default function reviewTrip() {
         });
     }, []);
 
-    useEffect(() => {
-        console.log(tripData)
-    },[tripData]);
+    // useEffect(() => {
+    //     console.log(tripData)
+    // },[tripData]);
 
     return (
             <View style={{
