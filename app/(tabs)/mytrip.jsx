@@ -1,10 +1,13 @@
-import { View, Text, ActivityIndicator } from 'react-native'
+import { View, Text, ActivityIndicator  } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import {Colors} from './../../constants/Colors'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import StartNewTripsCard from '../../components/MyTrips/StartNewTripsCard';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import {auth,db} from './../../config/FirebaseConfig';
+import UserTripList from '../../components/MyTrips/UserTripList';
+import { GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler';
+
 
 export default function Mytrip() {
 
@@ -22,9 +25,7 @@ export default function Mytrip() {
     const q = query(collection(db,"UserTrip"), where ("userEmail", "==", user.email));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
+    
       setUserTrips(prev => [...prev,doc.data()]);
       setLoading(false);
     })
@@ -58,7 +59,7 @@ export default function Mytrip() {
       }}/>}
 
       {userTrips.length == 0 ?
-        <StartNewTripsCard/> : null
+        <StartNewTripsCard/> : <UserTripList userTrips={userTrips}/>
       }
     </View>
   )

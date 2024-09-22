@@ -34,7 +34,6 @@ export default function SearchPlace() {
     };
 
     const handleSelectPlace = async (place) => {
-        
         // Extract necessary data from the selected place
         const locationInfo = {
             description: place.formatted, // Full address or description
