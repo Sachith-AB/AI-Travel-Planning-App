@@ -48,12 +48,12 @@ export default function SearchPlace() {
         router.push('/create-trip/selectTraveler');
     };
 
-    useEffect(() => {
-        if (tripData.length > 0) {
-            const latestLocation = tripData[tripData.length - 1]; // Get the last added location
-            console.log(latestLocation.description); // Access description
-        }
-    },[tripData])
+    // useEffect(() => {
+    //     if (tripData.length > 0) {
+    //         const latestLocation = tripData[tripData.length - 1]; // Get the last added location
+    //         console.log(latestLocation.description); // Access description
+    //     }
+    // },[tripData])
 
     return (
         <View style={{ padding: 25, paddingTop: 85, backgroundColor: Colors.white, height: '100%' }}>

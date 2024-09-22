@@ -52,6 +52,8 @@ export default function GenarateTrip() {
                 tripPlan: tripResSerialized,   // AI result (Ensure it's Firestore compatible)
                 tripData: JSON.stringify(tripData), // User selected trip data (stringified to ensure compatibility)
             });
+
+            
         
             // Navigate to the My Trip page
             router.push('(tabs)/mytrip/');
